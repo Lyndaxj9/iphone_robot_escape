@@ -13,17 +13,19 @@ class GameScene: SKScene {
     
     private var label : SKLabelNode?
     private var spinnyNode : SKShapeNode?
+    private var startButton : SKSpriteNode?
     var textLabel = SKLabelNode(text: "Robot Escape")
     
     override func didMove(to view: SKView) {
-        print("move")
-        // Get label node from scene and store it for use later
-        self.label = self.childNode(withName: "//helloLabel") as? SKLabelNode
-        if let label = self.label {
-            label.alpha = 0.0
-            label.run(SKAction.fadeIn(withDuration: 2.0))
+        
+        //fade in start button onto screen
+        self.startButton = self.childNode(withName: "start_button") as? SKSpriteNode
+        if let startButton = self.startButton {
+            startButton.alpha = 0.0
+            startButton.run(SKAction.fadeIn(withDuration: 4.0))
         }
         
+        textLabel.fontSize = 50
         addChild(textLabel)
         
         // Create shape node to use during mouse interaction
@@ -66,11 +68,22 @@ class GameScene: SKScene {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let label = self.label {
-            label.run(SKAction.init(named: "Pulse")!, withKey: "fadeInOut")
-        }
+        //here switch to the next scene
         
-        for t in touches { self.touchDown(atPoint: t.location(in: self)) }
+        if let location = touches.first?.location(in: self) {
+            let touchedNode = nodes(at: location)
+            
+            if touchedNode[0].name == "start_button" {
+                print("put up new scene")
+                let transition = SKTransition.reveal(with: .down, duration: 1.0)
+                
+                let nextScene = SKScene(fileNamed: "InstructScene")
+                //let nextScene = InstructScene
+                nextScene?.scaleMode = .aspectFill
+                
+                scene?.view?.presentScene(nextScene!, transition: transition)
+            }
+        }
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {

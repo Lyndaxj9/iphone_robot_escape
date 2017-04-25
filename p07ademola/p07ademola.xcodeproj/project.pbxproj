@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BDC200BB1EAFD44E0051D1C9 /* blue_button00.png in Resources */ = {isa = PBXBuildFile; fileRef = BDC200BA1EAFD44E0051D1C9 /* blue_button00.png */; };
+		BDC200BD1EAFD48E0051D1C9 /* red_button00.png in Resources */ = {isa = PBXBuildFile; fileRef = BDC200BC1EAFD48E0051D1C9 /* red_button00.png */; };
+		BDC200BF1EAFD7DA0051D1C9 /* InstructScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDC200BE1EAFD7DA0051D1C9 /* InstructScene.swift */; };
+		BDC200C51EAFD8C30051D1C9 /* InstructScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = BDC200C41EAFD8C30051D1C9 /* InstructScene.sks */; };
+		BDC200C71EAFDA2D0051D1C9 /* LevelScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDC200C61EAFDA2D0051D1C9 /* LevelScene.swift */; };
+		BDC200C91EAFDA630051D1C9 /* LevelScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = BDC200C81EAFDA630051D1C9 /* LevelScene.sks */; };
+		BDC200CC1EAFDBED0051D1C9 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDC200CB1EAFDBED0051D1C9 /* Player.swift */; };
 		BDE96FFE1EAEFE2300734468 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE96FFD1EAEFE2300734468 /* AppDelegate.swift */; };
 		BDE970001EAEFE2300734468 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = BDE96FFF1EAEFE2300734468 /* GameScene.sks */; };
 		BDE970021EAEFE2300734468 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = BDE970011EAEFE2300734468 /* Actions.sks */; };
@@ -19,6 +26,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BDC200BA1EAFD44E0051D1C9 /* blue_button00.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blue_button00.png; sourceTree = "<group>"; };
+		BDC200BC1EAFD48E0051D1C9 /* red_button00.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red_button00.png; sourceTree = "<group>"; };
+		BDC200BE1EAFD7DA0051D1C9 /* InstructScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstructScene.swift; sourceTree = "<group>"; };
+		BDC200C41EAFD8C30051D1C9 /* InstructScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = InstructScene.sks; sourceTree = "<group>"; };
+		BDC200C61EAFDA2D0051D1C9 /* LevelScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelScene.swift; sourceTree = "<group>"; };
+		BDC200C81EAFDA630051D1C9 /* LevelScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = LevelScene.sks; sourceTree = "<group>"; };
+		BDC200CB1EAFDBED0051D1C9 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		BDE96FFA1EAEFE2300734468 /* p07ademola.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = p07ademola.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDE96FFD1EAEFE2300734468 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BDE96FFF1EAEFE2300734468 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -43,6 +57,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BDC200CA1EAFDB7E0051D1C9 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				BDC200BA1EAFD44E0051D1C9 /* blue_button00.png */,
+				BDC200BC1EAFD48E0051D1C9 /* red_button00.png */,
+				BDE970151EAEFEA500734468 /* robot_red.png */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		BDE96FF11EAEFE2300734468 = {
 			isa = PBXGroup;
 			children = (
@@ -64,14 +88,19 @@
 			children = (
 				BDE96FFD1EAEFE2300734468 /* AppDelegate.swift */,
 				BDE96FFF1EAEFE2300734468 /* GameScene.sks */,
+				BDC200C41EAFD8C30051D1C9 /* InstructScene.sks */,
+				BDC200C81EAFDA630051D1C9 /* LevelScene.sks */,
 				BDE970011EAEFE2300734468 /* Actions.sks */,
 				BDE970031EAEFE2300734468 /* GameScene.swift */,
+				BDC200BE1EAFD7DA0051D1C9 /* InstructScene.swift */,
+				BDC200C61EAFDA2D0051D1C9 /* LevelScene.swift */,
+				BDC200CB1EAFDBED0051D1C9 /* Player.swift */,
 				BDE970051EAEFE2300734468 /* GameViewController.swift */,
 				BDE970071EAEFE2300734468 /* Main.storyboard */,
 				BDE9700A1EAEFE2300734468 /* Assets.xcassets */,
 				BDE9700C1EAEFE2300734468 /* LaunchScreen.storyboard */,
 				BDE9700F1EAEFE2300734468 /* Info.plist */,
-				BDE970151EAEFEA500734468 /* robot_red.png */,
+				BDC200CA1EAFDB7E0051D1C9 /* Resources */,
 			);
 			path = p07ademola;
 			sourceTree = "<group>";
@@ -136,11 +165,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				BDE970091EAEFE2300734468 /* Main.storyboard in Resources */,
+				BDC200BD1EAFD48E0051D1C9 /* red_button00.png in Resources */,
 				BDE970001EAEFE2300734468 /* GameScene.sks in Resources */,
 				BDE970161EAEFEA500734468 /* robot_red.png in Resources */,
+				BDC200C51EAFD8C30051D1C9 /* InstructScene.sks in Resources */,
+				BDC200BB1EAFD44E0051D1C9 /* blue_button00.png in Resources */,
 				BDE9700B1EAEFE2300734468 /* Assets.xcassets in Resources */,
 				BDE9700E1EAEFE2300734468 /* LaunchScreen.storyboard in Resources */,
 				BDE970021EAEFE2300734468 /* Actions.sks in Resources */,
+				BDC200C91EAFDA630051D1C9 /* LevelScene.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -151,9 +184,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDC200BF1EAFD7DA0051D1C9 /* InstructScene.swift in Sources */,
 				BDE970041EAEFE2300734468 /* GameScene.swift in Sources */,
 				BDE970061EAEFE2300734468 /* GameViewController.swift in Sources */,
 				BDE96FFE1EAEFE2300734468 /* AppDelegate.swift in Sources */,
+				BDC200CC1EAFDBED0051D1C9 /* Player.swift in Sources */,
+				BDC200C71EAFDA2D0051D1C9 /* LevelScene.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -313,6 +349,7 @@
 				BDE970141EAEFE2300734468 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
