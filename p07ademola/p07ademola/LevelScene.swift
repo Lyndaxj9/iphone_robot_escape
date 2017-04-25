@@ -13,17 +13,17 @@ import SpriteKit
 //maybe something to keep track to the level for the game
 //var levelNum = 1
 class LevelScene: SKScene {
-    var player : SKSpriteNode?
+    //var player : SKSpriteNode?
+    let player:Player = Player()
     
     override func didMove(to view: SKView) {
         //self.player = self.childNode(withName: "player") as? SKSpriteNode
-        let player:Player = Player()
         addChild(player)
         print("Now in LevelScene")
         
     }
     
     override func update(_ currentTime: TimeInterval) {
-        //player.startAction()
+        
     }
 }

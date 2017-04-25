@@ -14,6 +14,7 @@
 		BDC200C71EAFDA2D0051D1C9 /* LevelScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDC200C61EAFDA2D0051D1C9 /* LevelScene.swift */; };
 		BDC200C91EAFDA630051D1C9 /* LevelScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = BDC200C81EAFDA630051D1C9 /* LevelScene.sks */; };
 		BDC200CC1EAFDBED0051D1C9 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDC200CB1EAFDBED0051D1C9 /* Player.swift */; };
+		BDC200CE1EAFEBA10051D1C9 /* Bullet.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDC200CD1EAFEBA10051D1C9 /* Bullet.swift */; };
 		BDE96FFE1EAEFE2300734468 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE96FFD1EAEFE2300734468 /* AppDelegate.swift */; };
 		BDE970001EAEFE2300734468 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = BDE96FFF1EAEFE2300734468 /* GameScene.sks */; };
 		BDE970021EAEFE2300734468 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = BDE970011EAEFE2300734468 /* Actions.sks */; };
@@ -33,6 +34,7 @@
 		BDC200C61EAFDA2D0051D1C9 /* LevelScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelScene.swift; sourceTree = "<group>"; };
 		BDC200C81EAFDA630051D1C9 /* LevelScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = LevelScene.sks; sourceTree = "<group>"; };
 		BDC200CB1EAFDBED0051D1C9 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		BDC200CD1EAFEBA10051D1C9 /* Bullet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bullet.swift; sourceTree = "<group>"; };
 		BDE96FFA1EAEFE2300734468 /* p07ademola.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = p07ademola.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDE96FFD1EAEFE2300734468 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BDE96FFF1EAEFE2300734468 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 				BDC200BE1EAFD7DA0051D1C9 /* InstructScene.swift */,
 				BDC200C61EAFDA2D0051D1C9 /* LevelScene.swift */,
 				BDC200CB1EAFDBED0051D1C9 /* Player.swift */,
+				BDC200CD1EAFEBA10051D1C9 /* Bullet.swift */,
 				BDE970051EAEFE2300734468 /* GameViewController.swift */,
 				BDE970071EAEFE2300734468 /* Main.storyboard */,
 				BDE9700A1EAEFE2300734468 /* Assets.xcassets */,
@@ -187,6 +190,7 @@
 				BDC200BF1EAFD7DA0051D1C9 /* InstructScene.swift in Sources */,
 				BDE970041EAEFE2300734468 /* GameScene.swift in Sources */,
 				BDE970061EAEFE2300734468 /* GameViewController.swift in Sources */,
+				BDC200CE1EAFEBA10051D1C9 /* Bullet.swift in Sources */,
 				BDE96FFE1EAEFE2300734468 /* AppDelegate.swift in Sources */,
 				BDC200CC1EAFDBED0051D1C9 /* Player.swift in Sources */,
 				BDC200C71EAFDA2D0051D1C9 /* LevelScene.swift in Sources */,
