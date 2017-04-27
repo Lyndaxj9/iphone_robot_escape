@@ -10,11 +10,12 @@ import UIKit
 import SpriteKit
 
 class Player: SKSpriteNode {
-  
+    
     init() {
-        let texture = SKTexture(imageNamed: "robot_red")
-        super.init(texture: texture, color: UIColor.red, size: texture.size())
+        let texture = SKTexture(imageNamed: "robot_3Dyellow")
+        super.init(texture: texture, color: UIColor.yellow, size: texture.size())
         self.name = "player"
+        self.position = CGPoint(x:-300, y: 0)
         animate()
     }
     
@@ -24,7 +25,7 @@ class Player: SKSpriteNode {
     }
     
     private func animate() {
-        self.run(SKAction.moveBy(x: 30, y: 30, duration: 2.0))
+        self.run(SKAction.moveBy(x: -30, y: 0, duration: 2.0))
     }
  
     

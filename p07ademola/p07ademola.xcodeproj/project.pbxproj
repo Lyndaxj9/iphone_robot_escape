@@ -23,7 +23,8 @@
 		BDE970091EAEFE2300734468 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BDE970071EAEFE2300734468 /* Main.storyboard */; };
 		BDE9700B1EAEFE2300734468 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BDE9700A1EAEFE2300734468 /* Assets.xcassets */; };
 		BDE9700E1EAEFE2300734468 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BDE9700C1EAEFE2300734468 /* LaunchScreen.storyboard */; };
-		BDE970161EAEFEA500734468 /* robot_red.png in Resources */ = {isa = PBXBuildFile; fileRef = BDE970151EAEFEA500734468 /* robot_red.png */; };
+		BDF1684D1EB28984008A4216 /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDF1684C1EB28984008A4216 /* Enemy.swift */; };
+		BDF1684F1EB29E09008A4216 /* Points.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDF1684E1EB29E09008A4216 /* Points.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,7 +46,8 @@
 		BDE9700A1EAEFE2300734468 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BDE9700D1EAEFE2300734468 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BDE9700F1EAEFE2300734468 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BDE970151EAEFEA500734468 /* robot_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = robot_red.png; sourceTree = "<group>"; };
+		BDF1684C1EB28984008A4216 /* Enemy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
+		BDF1684E1EB29E09008A4216 /* Points.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Points.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,7 +66,6 @@
 			children = (
 				BDC200BA1EAFD44E0051D1C9 /* blue_button00.png */,
 				BDC200BC1EAFD48E0051D1C9 /* red_button00.png */,
-				BDE970151EAEFEA500734468 /* robot_red.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -97,7 +98,9 @@
 				BDC200BE1EAFD7DA0051D1C9 /* InstructScene.swift */,
 				BDC200C61EAFDA2D0051D1C9 /* LevelScene.swift */,
 				BDC200CB1EAFDBED0051D1C9 /* Player.swift */,
+				BDF1684C1EB28984008A4216 /* Enemy.swift */,
 				BDC200CD1EAFEBA10051D1C9 /* Bullet.swift */,
+				BDF1684E1EB29E09008A4216 /* Points.swift */,
 				BDE970051EAEFE2300734468 /* GameViewController.swift */,
 				BDE970071EAEFE2300734468 /* Main.storyboard */,
 				BDE9700A1EAEFE2300734468 /* Assets.xcassets */,
@@ -170,7 +173,6 @@
 				BDE970091EAEFE2300734468 /* Main.storyboard in Resources */,
 				BDC200BD1EAFD48E0051D1C9 /* red_button00.png in Resources */,
 				BDE970001EAEFE2300734468 /* GameScene.sks in Resources */,
-				BDE970161EAEFEA500734468 /* robot_red.png in Resources */,
 				BDC200C51EAFD8C30051D1C9 /* InstructScene.sks in Resources */,
 				BDC200BB1EAFD44E0051D1C9 /* blue_button00.png in Resources */,
 				BDE9700B1EAEFE2300734468 /* Assets.xcassets in Resources */,
@@ -188,9 +190,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				BDC200BF1EAFD7DA0051D1C9 /* InstructScene.swift in Sources */,
+				BDF1684F1EB29E09008A4216 /* Points.swift in Sources */,
 				BDE970041EAEFE2300734468 /* GameScene.swift in Sources */,
 				BDE970061EAEFE2300734468 /* GameViewController.swift in Sources */,
 				BDC200CE1EAFEBA10051D1C9 /* Bullet.swift in Sources */,
+				BDF1684D1EB28984008A4216 /* Enemy.swift in Sources */,
 				BDE96FFE1EAEFE2300734468 /* AppDelegate.swift in Sources */,
 				BDC200CC1EAFDBED0051D1C9 /* Player.swift in Sources */,
 				BDC200C71EAFDA2D0051D1C9 /* LevelScene.swift in Sources */,
