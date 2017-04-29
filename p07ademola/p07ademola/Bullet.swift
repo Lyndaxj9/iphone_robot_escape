@@ -12,7 +12,7 @@ import SpriteKit
 class Bullet: SKSpriteNode {
 
     init(bulletSound: String?) {
-        let texture = SKTexture(imageNamed: "blue_button00")
+        let texture = SKTexture(imageNamed: "bulletYellowSilver_outline")
         super.init(texture: texture, color: UIColor.blue, size: texture.size())
         self.name = "bullet"
         
