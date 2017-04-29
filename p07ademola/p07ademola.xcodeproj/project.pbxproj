@@ -16,6 +16,7 @@
 		BDC200CC1EAFDBED0051D1C9 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDC200CB1EAFDBED0051D1C9 /* Player.swift */; };
 		BDC200CE1EAFEBA10051D1C9 /* Bullet.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDC200CD1EAFEBA10051D1C9 /* Bullet.swift */; };
 		BDCA46CA1EB51E31007D747F /* laser5.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BDCA46C91EB51E31007D747F /* laser5.mp3 */; };
+		BDCA46CC1EB55534007D747F /* Ground Tiles.sks in Resources */ = {isa = PBXBuildFile; fileRef = BDCA46CB1EB55534007D747F /* Ground Tiles.sks */; };
 		BDE96FFE1EAEFE2300734468 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE96FFD1EAEFE2300734468 /* AppDelegate.swift */; };
 		BDE970001EAEFE2300734468 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = BDE96FFF1EAEFE2300734468 /* GameScene.sks */; };
 		BDE970021EAEFE2300734468 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = BDE970011EAEFE2300734468 /* Actions.sks */; };
@@ -38,6 +39,7 @@
 		BDC200CB1EAFDBED0051D1C9 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		BDC200CD1EAFEBA10051D1C9 /* Bullet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bullet.swift; sourceTree = "<group>"; };
 		BDCA46C91EB51E31007D747F /* laser5.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = laser5.mp3; sourceTree = "<group>"; };
+		BDCA46CB1EB55534007D747F /* Ground Tiles.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = "Ground Tiles.sks"; sourceTree = "<group>"; };
 		BDE96FFA1EAEFE2300734468 /* p07ademola.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = p07ademola.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDE96FFD1EAEFE2300734468 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BDE96FFF1EAEFE2300734468 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 				BDE970051EAEFE2300734468 /* GameViewController.swift */,
 				BDE970071EAEFE2300734468 /* Main.storyboard */,
 				BDE9700A1EAEFE2300734468 /* Assets.xcassets */,
+				BDCA46CB1EB55534007D747F /* Ground Tiles.sks */,
 				BDE9700C1EAEFE2300734468 /* LaunchScreen.storyboard */,
 				BDE9700F1EAEFE2300734468 /* Info.plist */,
 				BDC200CA1EAFDB7E0051D1C9 /* Resources */,
@@ -178,6 +181,7 @@
 				BDE970001EAEFE2300734468 /* GameScene.sks in Resources */,
 				BDC200C51EAFD8C30051D1C9 /* InstructScene.sks in Resources */,
 				BDC200BB1EAFD44E0051D1C9 /* blue_button00.png in Resources */,
+				BDCA46CC1EB55534007D747F /* Ground Tiles.sks in Resources */,
 				BDE9700B1EAEFE2300734468 /* Assets.xcassets in Resources */,
 				BDCA46CA1EB51E31007D747F /* laser5.mp3 in Resources */,
 				BDE9700E1EAEFE2300734468 /* LaunchScreen.storyboard in Resources */,
