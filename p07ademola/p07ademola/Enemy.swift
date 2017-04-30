@@ -19,8 +19,8 @@ class Enemy: SKSpriteNode {
         self.name = "enemy"
         self.position = CGPoint(x: 500, y: 0)
         self.zRotation = (180.0 * CGFloat(M_PI)) / 180.0
-        self.xScale = 0.5
-        self.yScale = 0.5
+        self.xScale = 0.35
+        self.yScale = 0.35
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -52,8 +52,5 @@ class Enemy: SKSpriteNode {
         //maybe another if statement for when they are super close like width of enemy sprite?
         
     }
-    
-    func anAction(scene: SKScene) {
-        print("in a scened")
-    }
+
 }

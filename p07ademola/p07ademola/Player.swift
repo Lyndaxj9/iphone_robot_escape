@@ -18,8 +18,8 @@ class Player: SKSpriteNode {
         super.init(texture: texture, color: UIColor.yellow, size: texture.size())
         self.name = "player"
         self.position = CGPoint(x:-500, y: 0)
-        self.xScale = 0.5
-        self.yScale = 0.5
+        self.xScale = 0.35
+        self.yScale = 0.35
     }
     
     required init?(coder aDecoder: NSCoder) {
