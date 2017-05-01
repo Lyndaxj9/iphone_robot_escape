@@ -47,7 +47,7 @@ class Enemy: SKSpriteNode {
             self.position.y += moveSpeed * sin(angle)
     
         } else if( distanceTotal > agroRange ) {
-            print("idle movement")
+            //print("idle movement")
         }
         //maybe another if statement for when they are super close like width of enemy sprite?
         

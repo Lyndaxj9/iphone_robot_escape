@@ -24,7 +24,7 @@ class Player: SKSpriteNode {
         let xSize = textureSize.width * self.xScale
         let ySize = textureSize.height * self.yScale
         self.physicsBody = SKPhysicsBody(texture: texture, size: CGSize(width: xSize, height: ySize))
-        //self.physicsBody?.isDynamic = true
+        self.physicsBody?.isDynamic = true
         self.physicsBody?.allowsRotation = false
         self.physicsBody?.affectedByGravity = false
     }
