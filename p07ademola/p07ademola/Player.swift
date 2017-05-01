@@ -20,6 +20,13 @@ class Player: SKSpriteNode {
         self.position = CGPoint(x:-500, y: 0)
         self.xScale = 0.35
         self.yScale = 0.35
+        let textureSize = texture.size()
+        let xSize = textureSize.width * self.xScale
+        let ySize = textureSize.height * self.yScale
+        self.physicsBody = SKPhysicsBody(texture: texture, size: CGSize(width: xSize, height: ySize))
+        //self.physicsBody?.isDynamic = true
+        self.physicsBody?.allowsRotation = false
+        self.physicsBody?.affectedByGravity = false
     }
     
     required init?(coder aDecoder: NSCoder) {

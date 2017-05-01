@@ -22,12 +22,13 @@ struct PhysicsCategory {
 //put value here to make it global
 //maybe something to keep track to the level for the game
 //var levelNum = 1
-class LevelScene: SKScene {
+class LevelScene: SKScene, SKPhysicsContactDelegate {
     
     //tileMap to be created with objects
     var objectTileMap:SKTileMapNode!
     var pathTilesMap:SKTileMapNode!
     var backgroundMap:SKTileMapNode!
+    var barrierMap:SKTileMapNode!
     
     //var player : SKSpriteNode?
     let player:Player = Player()
@@ -37,8 +38,12 @@ class LevelScene: SKScene {
     //determine whether to shoot or to move
     var toShoot = false
     
+    //determine
+    var toMove = true
+    
     override func didMove(to view: SKView) {
         physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
+        physicsWorld.contactDelegate = self
         setupPlayer()
         setupEnemy()
         loadNodes()
@@ -49,7 +54,8 @@ class LevelScene: SKScene {
     
     func setupPlayer() {
         player.physicsBody?.categoryBitMask = PhysicsCategory.PlayerRobot
-        player.physicsBody?.contactTestBitMask = PhysicsCategory.EnemyRobot | PhysicsCategory.PathEdge | PhysicsCategory.PointObject
+        player.physicsBody?.contactTestBitMask = PhysicsCategory.PathEdge | PhysicsCategory.PointObject | PhysicsCategory.EnemyRobot
+        player.physicsBody?.collisionBitMask = PhysicsCategory.PathEdge
         player.physicsBody?.usesPreciseCollisionDetection = true
         addChild(player)
     }
@@ -69,7 +75,12 @@ class LevelScene: SKScene {
         }
         self.pathTilesMap = pathTilesMap
         
-        tileMapPhysics(name: self.backgroundMap)
+        guard let barrierMap = childNode(withName: "barrierMap") as? SKTileMapNode else{
+            fatalError("Barrier node not loaded")
+        }
+        self.barrierMap = barrierMap
+        
+        tileMapPhysics(name: self.barrierMap)
     }
     
     func setupObjects() {
@@ -117,8 +128,9 @@ class LevelScene: SKScene {
         for col in 0..<tileMap.numberOfColumns {
             for row in 0..<tileMap.numberOfRows {
                 if let tileDefinition = tileMap.tileDefinition(atColumn: col, row: row) {
-                    let isHitTile = tileDefinition.userData?["hit"] as? Int
+                    let isHitTile = tileDefinition.userData?["greyTile"] as? Int
                     if(isHitTile != 0) {
+                        //print("tilehitget")
                         let tileArray = tileDefinition.textures
                         let tileTexture = tileArray[0]
                         
@@ -137,7 +149,7 @@ class LevelScene: SKScene {
                         
                         tileNode.physicsBody?.categoryBitMask = PhysicsCategory.PathEdge
                         tileNode.physicsBody?.contactTestBitMask = PhysicsCategory.PlayerRobot | PhysicsCategory.EnemyRobot
-                        //tileNode.physicsBody?.collisionBitMask = PhysicsCategory.None
+                        tileNode.physicsBody?.collisionBitMask = PhysicsCategory.PlayerRobot
                         tileNode.name = "groundHit"
                         tileNode.yScale = tileMap.yScale
                         tileNode.xScale = tileMap.xScale
@@ -169,7 +181,7 @@ class LevelScene: SKScene {
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
-        
+        print("contact")
     }
     
     override func update(_ currentTime: TimeInterval) {
