@@ -96,6 +96,7 @@ class LevelScene: SKScene, SKPhysicsContactDelegate {
     
         objectTileMap = SKTileMapNode(tileSet: tileSet, columns: columns, rows: rows, tileSize: size)
         addChild(objectTileMap)
+        objectTileMap.name = "objectMap"
         
         let tileGroups = tileSet.tileGroups
         
@@ -158,7 +159,8 @@ class LevelScene: SKScene, SKPhysicsContactDelegate {
                         tileNode.yScale = tileMap.yScale
                         tileNode.xScale = tileMap.xScale
                         
-                        tileMap.addChild(tileNode)
+                        //tileMap.addChild(tileNode)
+                        addChild(tileNode)
                     }
                 }
             }
@@ -189,18 +191,36 @@ class LevelScene: SKScene, SKPhysicsContactDelegate {
         
         switch(contactMask) {
         case PhysicsCategory.PlayerRobot | PhysicsCategory.PointObject:
-            print("gain a point2")
             
+            //try moving around this code to make to make it so that the barrel disappears and the
+            //points only increment once
+            print("gain a point2")
             let position = player.position
             
             let column = objectTileMap.tileColumnIndex(fromPosition: position)
             let row = objectTileMap.tileRowIndex(fromPosition: position)
-            
+           
             objectTileMap.setTileGroup(nil, forColumn: column, row: row)
-            //need to remove the sknode for the tile
-            //function to get sknode at position?
-            score += 10
-            print("score is: %d", score)
+            
+            if(contact.bodyA.node?.name == "groundHit") {
+                print("remove this bodyA")
+                contact.bodyA.node?.removeFromParent()
+                score += 10
+                print("score is: %d", score)
+                
+                
+                objectTileMap.setTileGroup(nil, forColumn: column, row: row)
+            } else if( contact.bodyB.node?.name == "groundHit") {
+                print("remove this bodyB")
+                contact.bodyB.node?.removeFromParent()
+                score += 10
+                print("score is: %d", score)
+            
+                
+                objectTileMap.setTileGroup(nil, forColumn: column, row: row)
+            }
+
+            
         default:
             print("default")
         }
