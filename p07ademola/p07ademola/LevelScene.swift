@@ -216,11 +216,12 @@ class LevelScene: SKScene, SKPhysicsContactDelegate {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         toShoot = true
         
+        /*
         guard let touch = touches.first else { return }
         let currentPoint = touch.location(in: self)
         
         
-        /*
+        
         let aNode = nodes(at: currentPoint)
         for aN in aNode {
             print(aN.name!)
@@ -288,8 +289,8 @@ class LevelScene: SKScene, SKPhysicsContactDelegate {
             scoreLabel.text = String(format: "Score: %d", score)
         }
         
-        if player.frame.intersects(enemy.frame) {
-            print("game over 2")
+        if (player.frame.intersects(enemy.frame) && !gameOver) {
+            //print("game over 2")
             gameOver = true
             
             gameoverScreen.isHidden = false
