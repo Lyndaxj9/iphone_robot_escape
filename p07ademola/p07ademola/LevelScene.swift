@@ -29,14 +29,22 @@ class LevelScene: SKScene, SKPhysicsContactDelegate {
     var pathTilesMap:SKTileMapNode!
     var backgroundMap:SKTileMapNode!
     var barrierMap:SKTileMapNode!
+    var scoreLabel:SKLabelNode!
+    var gameoverScreen:SKNode!
+    var restartButton:SKSpriteNode!
     
     //var player : SKSpriteNode?
     let player:Player = Player()
     //will be making an array of enmies
     let enemy:Enemy = Enemy()
     
+    //
+    
+    
     //determine whether to shoot or to move
     var toShoot = false
+    
+    var gameOver = false
     
     //determine
     var toMove = true
@@ -63,6 +71,12 @@ class LevelScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func setupEnemy() {
+        /*
+        enemy.physicsBody?.categoryBitMask = PhysicsCategory.EnemyRobot
+        enemy.physicsBody?.contactTestBitMask = PhysicsCategory.PlayerRobot
+        enemy.physicsBody?.collisionBitMask = PhysicsCategory.PathEdge
+        enemy.physicsBody?.usesPreciseCollisionDetection = true
+ */
         addChild(enemy)
     }
     
@@ -83,6 +97,26 @@ class LevelScene: SKScene, SKPhysicsContactDelegate {
         self.barrierMap = barrierMap
         
         tileMapPhysics(name: self.barrierMap, dataString: "greyTile", categoryMask: PhysicsCategory.PathEdge, collisionMask: PhysicsCategory.PlayerRobot)
+        
+        guard let scoreLabel = childNode(withName: "score") as? SKLabelNode else {
+            fatalError("Score node not loaded")
+        }
+        self.scoreLabel = scoreLabel
+        scoreLabel.text = "Score: 0"
+        
+        guard let gOS = childNode(withName: "gameOverScreen") else {
+            fatalError("gameScreen node not loaded")
+        }
+        gameoverScreen = gOS
+        gameoverScreen.isHidden = true
+        gameoverScreen.isUserInteractionEnabled = false
+     
+        /*
+        guard let restartButton = childNode(withName: "restartButton") as? SKSpriteNode else {
+            fatalError("Button node not loaded")
+        }
+        self.restartButton = restartButton
+        */
     }
     
     func setupObjects() {
@@ -119,7 +153,7 @@ class LevelScene: SKScene, SKPhysicsContactDelegate {
             }
         }
         
-        tileMapPhysics(name: objectTileMap, dataString: "barrel", categoryMask: PhysicsCategory.PointObject, collisionMask: PhysicsCategory.None)
+        //tileMapPhysics(name: objectTileMap, dataString: "barrel", categoryMask: PhysicsCategory.PointObject, collisionMask: PhysicsCategory.None)
         
     }
     
@@ -167,67 +201,100 @@ class LevelScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
+    func gameOverSetup() {
+        player.removeFromParent()
+        enemy.removeFromParent()
+        objectTileMap.removeFromParent()
+        
+        setupPlayer()
+        setupEnemy()
+        setupObjects()
+        gameOver = false
+        score = 0
+    }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         toShoot = true
+        
+        guard let touch = touches.first else { return }
+        let currentPoint = touch.location(in: self)
+        
+        
+        /*
+        let aNode = nodes(at: currentPoint)
+        for aN in aNode {
+            print(aN.name!)
+        }
+        
+        
+        if( (aNode.name == "restartButton" || aNode.name == "restartLabel") && gameOver){
+            gameOverSetup()
+        }
+ */
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         toShoot = false
-        guard let touch = touches.first else { return }
-        let currentPoint = touch.location(in: self)
-        player.position = currentPoint
+        
+        if(!gameOver) {
+            guard let touch = touches.first else { return }
+            let currentPoint = touch.location(in: self)
+            player.position = currentPoint
+        }
+        
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else { return }
         let point = touch.location(in: self)
-        if(toShoot) {
+        if(toShoot && !gameOver) {
             player.fireBullet(scene: self, location: point)
         }
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
+        /*
         let contactMask = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
         
+        
         switch(contactMask) {
-        case PhysicsCategory.PlayerRobot | PhysicsCategory.PointObject:
+            case PhysicsCategory.PlayerRobot | PhysicsCategory.EnemyRobot:
             
-            //try moving around this code to make to make it so that the barrel disappears and the
-            //points only increment once
-            print("gain a point2")
-            let position = player.position
-            
-            let column = objectTileMap.tileColumnIndex(fromPosition: position)
-            let row = objectTileMap.tileRowIndex(fromPosition: position)
-           
-            objectTileMap.setTileGroup(nil, forColumn: column, row: row)
-            
-            if(contact.bodyA.node?.name == "groundHit") {
-                print("remove this bodyA")
-                contact.bodyA.node?.removeFromParent()
-                score += 10
-                print("score is: %d", score)
-                
-                
-                objectTileMap.setTileGroup(nil, forColumn: column, row: row)
-            } else if( contact.bodyB.node?.name == "groundHit") {
-                print("remove this bodyB")
-                contact.bodyB.node?.removeFromParent()
-                score += 10
-                print("score is: %d", score)
-            
-                
-                objectTileMap.setTileGroup(nil, forColumn: column, row: row)
-            }
-
-            
-        default:
-            print("default")
+                //gameOver = true
+            default:
+                print("something happened")
         }
+ */
         
     }
     
     override func update(_ currentTime: TimeInterval) {
-        enemy.followPlayer(scene: self, playerPos: player.position)
+        if(!gameOver){
+            enemy.followPlayer(scene: self, playerPos: player.position)
+        }
+        
+        //check if over barrel
+        let position = player.position
+        
+        let column = objectTileMap.tileColumnIndex(fromPosition: position)
+        let row = objectTileMap.tileRowIndex(fromPosition: position)
+        
+        let objectTile = objectTileMap.tileDefinition(atColumn: column, row: row)
+        
+        if let _ = objectTile?.userData?.value(forKey: "barrelG") {
+            objectTileMap.setTileGroup(nil, forColumn: column, row: row)
+            score += 10
+            print("score is: %d", score)
+            scoreLabel.text = String(format: "Score: %d", score)
+        }
+        
+        if player.frame.intersects(enemy.frame) {
+            print("game over 2")
+            gameOver = true
+            
+            gameoverScreen.isHidden = false
+            gameoverScreen.isUserInteractionEnabled = true
+        }
+        
     }
 }

@@ -40,7 +40,7 @@ class Enemy: SKSpriteNode {
         self.zRotation = angle
         
         if( distanceTotal <= self.size.width) {
-            print("too close")
+            //print("too close")
             
         } else if( distanceTotal <= agroRange ) {
             self.position.x += moveSpeed * cos(angle)
