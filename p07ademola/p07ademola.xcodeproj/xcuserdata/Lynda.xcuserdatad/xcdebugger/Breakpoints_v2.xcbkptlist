@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "p07ademola/Player.swift"
-            timestampString = "515353403.780467"
+            timestampString = "519431499.585514"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "59"
-            endingLineNumber = "59"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
             landmarkName = "fireBullet(scene:location:)"
             landmarkType = "7">
          </BreakpointContent>

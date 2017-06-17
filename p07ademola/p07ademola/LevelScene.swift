@@ -48,6 +48,7 @@ class LevelScene: SKScene, SKPhysicsContactDelegate {
     
     //determine
     var toMove = true
+    var playerLoc:CGPoint!
     
     var score = 0
     
@@ -67,6 +68,7 @@ class LevelScene: SKScene, SKPhysicsContactDelegate {
         player.physicsBody?.contactTestBitMask = PhysicsCategory.PathEdge | PhysicsCategory.PointObject | PhysicsCategory.EnemyRobot
         player.physicsBody?.collisionBitMask = PhysicsCategory.PathEdge
         player.physicsBody?.usesPreciseCollisionDetection = true
+        playerLoc = player.position
         addChild(player)
     }
     
@@ -216,12 +218,12 @@ class LevelScene: SKScene, SKPhysicsContactDelegate {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         toShoot = true
         
-        /*
+        
         guard let touch = touches.first else { return }
         let currentPoint = touch.location(in: self)
+        playerLoc = currentPoint
         
-        
-        
+        /*
         let aNode = nodes(at: currentPoint)
         for aN in aNode {
             print(aN.name!)
@@ -246,11 +248,12 @@ class LevelScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        /*
         guard let touch = touches.first else { return }
         let point = touch.location(in: self)
         if(toShoot && !gameOver) {
             player.fireBullet(scene: self, location: point)
-        }
+        }*/
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
@@ -272,6 +275,7 @@ class LevelScene: SKScene, SKPhysicsContactDelegate {
     override func update(_ currentTime: TimeInterval) {
         if(!gameOver){
             enemy.followPlayer(scene: self, playerPos: player.position)
+            player.moveTo(scene: self, location: playerLoc)
         }
         
         //check if over barrel
@@ -296,6 +300,5 @@ class LevelScene: SKScene, SKPhysicsContactDelegate {
             gameoverScreen.isHidden = false
             gameoverScreen.isUserInteractionEnabled = true
         }
-        
     }
 }

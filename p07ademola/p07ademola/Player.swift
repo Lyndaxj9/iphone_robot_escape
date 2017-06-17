@@ -12,6 +12,7 @@ import SpriteKit
 class Player: SKSpriteNode {
     
     private var canFire = true
+    private var moveSpeed = CGFloat(13)
     
     init() {
         let texture = SKTexture(imageNamed: "robot_3Dyellow")
@@ -31,6 +32,36 @@ class Player: SKSpriteNode {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+    }
+    
+    func moveTo(scene: SKScene, location: CGPoint) {
+        moveX(point: location.x)
+        moveY(point: location.y)
+    }
+    
+    func moveX(point: CGFloat) {
+        if(abs(self.position.x - point) < moveSpeed) {
+            self.position.x = point
+        } else {
+            if (point < self.position.x) {
+                self.position.x -= moveSpeed
+            } else {
+                self.position.x += moveSpeed
+            }
+        }
+        
+    }
+    
+    func moveY(point: CGFloat) {
+        if(abs(self.position.y - point) < moveSpeed) {
+            self.position.y = point
+        } else {
+            if (point < self.position.y) {
+                self.position.y -= moveSpeed
+            } else {
+                self.position.y += moveSpeed
+            }
+        }
     }
     
     func fireBullet(scene: SKScene, location: CGPoint) {
