@@ -11,7 +11,7 @@ import SpriteKit
 
 class Enemy: SKSpriteNode {
     
-    private var moveSpeed = CGFloat(10)
+    private var moveSpeed = CGFloat(8)
 
     init() {
         let texture = SKTexture(imageNamed: "robot_3Dblue")

@@ -12,7 +12,7 @@ import SpriteKit
 class Player: SKSpriteNode {
     
     private var canFire = true
-    private var moveSpeed = CGFloat(13)
+    private var moveSpeed = CGFloat(16)
     
     init() {
         let texture = SKTexture(imageNamed: "robot_3Dyellow")

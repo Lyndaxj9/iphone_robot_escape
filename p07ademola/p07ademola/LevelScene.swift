@@ -216,19 +216,23 @@ class LevelScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        toShoot = true
-        
-        
         guard let touch = touches.first else { return }
         let currentPoint = touch.location(in: self)
-        playerLoc = currentPoint
         
-        /*
-        let aNode = nodes(at: currentPoint)
-        for aN in aNode {
-            print(aN.name!)
+        let touchedNodes = nodes(at: currentPoint)
+        for aN in touchedNodes {
+            if(aN.name == enemy.name) {
+                print("player fire bullet")
+                playerLoc = player.position
+                player.fireBullet(scene: self, location: currentPoint)
+                toShoot = true
+            }
         }
         
+        if(!toShoot) {
+            playerLoc = currentPoint
+        }
+        /*
         
         if( (aNode.name == "restartButton" || aNode.name == "restartLabel") && gameOver){
             gameOverSetup()
@@ -248,12 +252,7 @@ class LevelScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        /*
-        guard let touch = touches.first else { return }
-        let point = touch.location(in: self)
-        if(toShoot && !gameOver) {
-            player.fireBullet(scene: self, location: point)
-        }*/
+        toShoot = false
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
