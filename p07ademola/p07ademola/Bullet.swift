@@ -19,6 +19,11 @@ class Bullet: SKSpriteNode {
         if(bulletSound != nil){
             run(SKAction.playSoundFileNamed(bulletSound!, waitForCompletion: false))
         }
+        
+        self.physicsBody = SKPhysicsBody(texture: texture, size: texture.size())
+        self.physicsBody?.isDynamic = true
+        self.physicsBody?.allowsRotation = false
+        self.physicsBody?.affectedByGravity = false
     }
     
     required init?(coder aDecoder: NSCoder) {

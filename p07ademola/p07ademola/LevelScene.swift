@@ -251,14 +251,19 @@ class LevelScene: SKScene, SKPhysicsContactDelegate {
         
         switch(contactMask) {
             case PhysicsCategory.PlayerRobot | PhysicsCategory.EnemyRobot:
-                print("gameOver")
+                //print("gameOver")
                 gameOver = true
                 
                 gameoverScreen.isHidden = false
                 gameoverScreen.isUserInteractionEnabled = true
                 break
+            case PhysicsCategory.EnemyRobot | PhysicsCategory.Bullet:
+                print("bullet . enemy contact")
+                enemy.enemyDeath(scene: self)
+                break
             default:
-                print("something happened")
+                break
+                //print("something happened")
         }
         
     }

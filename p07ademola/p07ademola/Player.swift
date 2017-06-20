@@ -75,10 +75,13 @@ class Player: SKSpriteNode {
             var fireLocX = CGFloat(450)
             var fireLocY = CGFloat(175)
             
+            bullet.physicsBody?.categoryBitMask = PhysicsCategory.Bullet
+            bullet.physicsBody?.contactTestBitMask = PhysicsCategory.EnemyRobot
             bullet.position.x = self.position.x + self.size.width/2
             bullet.position.y = self.position.y
             scene.addChild(bullet)
             
+            //ah this doesn't work properly
             if(location.x < fireLocX) {
                 fireLocX = location.x
             }
