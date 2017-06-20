@@ -21,6 +21,13 @@ class Enemy: SKSpriteNode {
         self.zRotation = (180.0 * CGFloat(M_PI)) / 180.0
         self.xScale = 0.35
         self.yScale = 0.35
+        let textureSize = texture.size()
+        let xSize = textureSize.width * self.xScale
+        let ySize = textureSize.height * self.yScale
+        self.physicsBody = SKPhysicsBody(texture: texture, size: CGSize(width: xSize, height: ySize))
+        self.physicsBody?.isDynamic = true
+        self.physicsBody?.allowsRotation = false
+        self.physicsBody?.affectedByGravity = false
     }
     
     required init?(coder aDecoder: NSCoder) {

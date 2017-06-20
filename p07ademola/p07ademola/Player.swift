@@ -69,6 +69,7 @@ class Player: SKSpriteNode {
             return
         } else {
             canFire = false
+ 
             //x: 530 y: 250
             let bullet = Bullet(bulletSound: "laser5")
             var fireLocX = CGFloat(450)
@@ -95,6 +96,7 @@ class Player: SKSpriteNode {
             let removeBulletAction = SKAction.removeFromParent()
             self.run(rotatePlayer)
             bullet.run(SKAction.sequence([moveBulletAction, removeBulletAction]))
+        
             let waitToEnableFire = SKAction.wait(forDuration: 0.5)
             run(waitToEnableFire, completion: {
                 self.canFire = true

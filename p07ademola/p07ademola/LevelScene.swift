@@ -15,8 +15,9 @@ struct PhysicsCategory {
     static let All      : UInt32 = UInt32.max
     static let PlayerRobot : UInt32 = 0b1 //1
     static let EnemyRobot  : UInt32 = 0b10 //2
-    static let PathEdge    : UInt32 = 0b11 //3
-    static let PointObject : UInt32 = 0b100 //4
+    static let PathEdge    : UInt32 = 0b100 //4
+    static let PointObject : UInt32 = 0b101 //5
+    static let Bullet      : UInt32 = 0b110 //6
 }
 
 //put value here to make it global
@@ -65,20 +66,16 @@ class LevelScene: SKScene, SKPhysicsContactDelegate {
     
     func setupPlayer() {
         player.physicsBody?.categoryBitMask = PhysicsCategory.PlayerRobot
-        player.physicsBody?.contactTestBitMask = PhysicsCategory.PathEdge | PhysicsCategory.PointObject | PhysicsCategory.EnemyRobot
-        player.physicsBody?.collisionBitMask = PhysicsCategory.PathEdge
+        player.physicsBody?.contactTestBitMask = PhysicsCategory.EnemyRobot | PhysicsCategory.PathEdge | PhysicsCategory.PointObject
         player.physicsBody?.usesPreciseCollisionDetection = true
         playerLoc = player.position
         addChild(player)
     }
     
     func setupEnemy() {
-        /*
         enemy.physicsBody?.categoryBitMask = PhysicsCategory.EnemyRobot
-        enemy.physicsBody?.contactTestBitMask = PhysicsCategory.PlayerRobot
-        enemy.physicsBody?.collisionBitMask = PhysicsCategory.PathEdge
+        enemy.physicsBody?.contactTestBitMask = PhysicsCategory.PlayerRobot | PhysicsCategory.Bullet
         enemy.physicsBody?.usesPreciseCollisionDetection = true
- */
         addChild(enemy)
     }
     
@@ -242,13 +239,6 @@ class LevelScene: SKScene, SKPhysicsContactDelegate {
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         toShoot = false
-        
-        if(!gameOver) {
-            guard let touch = touches.first else { return }
-            let currentPoint = touch.location(in: self)
-            player.position = currentPoint
-        }
-        
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -256,18 +246,20 @@ class LevelScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
-        /*
         let contactMask = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
         
         
         switch(contactMask) {
             case PhysicsCategory.PlayerRobot | PhysicsCategory.EnemyRobot:
-            
-                //gameOver = true
+                print("gameOver")
+                gameOver = true
+                
+                gameoverScreen.isHidden = false
+                gameoverScreen.isUserInteractionEnabled = true
+                break
             default:
                 print("something happened")
         }
- */
         
     }
     
@@ -290,14 +282,6 @@ class LevelScene: SKScene, SKPhysicsContactDelegate {
             score += 10
             print("score is: %d", score)
             scoreLabel.text = String(format: "Score: %d", score)
-        }
-        
-        if (player.frame.intersects(enemy.frame) && !gameOver) {
-            //print("game over 2")
-            gameOver = true
-            
-            gameoverScreen.isHidden = false
-            gameoverScreen.isUserInteractionEnabled = true
         }
     }
 }
