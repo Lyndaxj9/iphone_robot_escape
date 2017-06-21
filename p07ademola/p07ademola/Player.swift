@@ -37,6 +37,9 @@ class Player: SKSpriteNode {
     func moveTo(scene: SKScene, location: CGPoint) {
         moveX(point: location.x)
         moveY(point: location.y)
+        let angle = calculateAngle(x1: self.position.x, x2: location.x, y1: self.position.y, y2: location.y)
+        let rotatePlayer = SKAction.rotate(toAngle: angle, duration: 0.1)
+        self.run(rotatePlayer)
     }
     
     func moveX(point: CGFloat) {
@@ -70,10 +73,9 @@ class Player: SKSpriteNode {
         } else {
             canFire = false
  
-            //x: 530 y: 250
             let bullet = Bullet(bulletSound: "laser5")
-            var fireLocX = CGFloat(450)
-            var fireLocY = CGFloat(175)
+            var fireLocX = bullet.getFireDistX()
+            var fireLocY = bullet.getFireDistY()
             
             bullet.physicsBody?.categoryBitMask = PhysicsCategory.Bullet
             bullet.physicsBody?.contactTestBitMask = PhysicsCategory.EnemyRobot
@@ -82,16 +84,30 @@ class Player: SKSpriteNode {
             scene.addChild(bullet)
             
             //restrict how far the bullet can go
-            if(abs(self.position.x - location.x) < fireLocX) {
+            let dV = CGVector(dx: location.x - self.position.x, dy: location.y - self.position.y)
+            let vRoot = sqrt(pow(dV.dx, 2) + pow(dV.dy, 2))
+            let uX = dV.dx/vRoot
+            let uY = dV.dy/vRoot
+            
+            if(abs(self.position.x - location.x) < bullet.getFireDistX()) {
                 fireLocX = location.x
+            } else {
+                //fireLocX += self.position.x
+                fireLocX *= uX
             }
-            if(abs(self.position.y - location.y) < fireLocY) {
+            
+            if(abs(self.position.y - location.y) < bullet.getFireDistY()) {
                 fireLocY = location.y
+            } else {
+                //fireLocY += self.position.y
+                fireLocY *= uY
             }
             
             //let slope = (self.position.y - fireLocY)/(self.position.x - fireLocX)
+            /*
             let v2 = CGVector(dx:fireLocX - self.position.x, dy: fireLocY - self.position.y)
-            let angle = atan2(v2.dy, v2.dx)
+ */
+            let angle = calculateAngle(x1: self.position.x, x2: fireLocX, y1: self.position.y, y2: fireLocY)
             bullet.zRotation = angle
             
             let rotatePlayer = SKAction.rotate(toAngle: angle, duration: 0.1)
@@ -107,6 +123,12 @@ class Player: SKSpriteNode {
             
             print("shoot bullet")
         }
+    }
+    
+    func calculateAngle(x1: CGFloat, x2: CGFloat, y1: CGFloat, y2: CGFloat) -> CGFloat {
+        let v2 = CGVector(dx:x2 - x1, dy: y2 - y1)
+        let angle = atan2(v2.dy, v2.dx)
+        return angle
     }
  
 }

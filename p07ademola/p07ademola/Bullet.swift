@@ -11,6 +11,9 @@ import SpriteKit
 
 class Bullet: SKSpriteNode {
 
+    private var fireDistX = CGFloat(450)
+    private var fireDistY = CGFloat(175)
+    
     init(bulletSound: String?) {
         let texture = SKTexture(imageNamed: "bulletYellowSilver_outline")
         super.init(texture: texture, color: UIColor.blue, size: texture.size())
@@ -28,5 +31,13 @@ class Bullet: SKSpriteNode {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+    }
+    
+    func getFireDistX() -> CGFloat {
+        return fireDistX
+    }
+    
+    func getFireDistY() -> CGFloat {
+        return fireDistY
     }
 }
