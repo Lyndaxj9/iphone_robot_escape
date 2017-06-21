@@ -79,6 +79,7 @@ class Player: SKSpriteNode {
             
             bullet.physicsBody?.categoryBitMask = PhysicsCategory.Bullet
             bullet.physicsBody?.contactTestBitMask = PhysicsCategory.EnemyRobot
+            bullet.physicsBody?.collisionBitMask = 0
             bullet.position.x = self.position.x + self.size.width/2
             bullet.position.y = self.position.y
             scene.addChild(bullet)
@@ -103,10 +104,6 @@ class Player: SKSpriteNode {
                 fireLocY *= uY
             }
             
-            //let slope = (self.position.y - fireLocY)/(self.position.x - fireLocX)
-            /*
-            let v2 = CGVector(dx:fireLocX - self.position.x, dy: fireLocY - self.position.y)
- */
             let angle = calculateAngle(x1: self.position.x, x2: fireLocX, y1: self.position.y, y2: fireLocY)
             bullet.zRotation = angle
             
