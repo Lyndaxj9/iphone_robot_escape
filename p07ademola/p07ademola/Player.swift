@@ -81,11 +81,11 @@ class Player: SKSpriteNode {
             bullet.position.y = self.position.y
             scene.addChild(bullet)
             
-            //ah this doesn't work properly
-            if(location.x < fireLocX) {
+            //restrict how far the bullet can go
+            if(abs(self.position.x - location.x) < fireLocX) {
                 fireLocX = location.x
             }
-            if(location.y < fireLocY) {
+            if(abs(self.position.y - location.y) < fireLocY) {
                 fireLocY = location.y
             }
             

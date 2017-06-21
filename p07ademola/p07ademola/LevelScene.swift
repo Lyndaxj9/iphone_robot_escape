@@ -259,7 +259,15 @@ class LevelScene: SKScene, SKPhysicsContactDelegate {
                 break
             case PhysicsCategory.EnemyRobot | PhysicsCategory.Bullet:
                 print("bullet . enemy contact")
-                enemy.enemyDeath(scene: self)
+                if(contact.bodyA.node?.name == "enemy") {
+                    let currentEnode:Enemy = contact.bodyA.node as! Enemy
+                    currentEnode.enemyDeath(scene: self)
+                    //enemy.enemyDeath(scene: self)
+                } else if(contact.bodyB.node?.name == "enemy") {
+                    let currentEnode:Enemy = contact.bodyB.node as! Enemy
+                    currentEnode.enemyDeath(scene: self)
+                }
+                
                 break
             default:
                 break
