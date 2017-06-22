@@ -13,6 +13,7 @@ class Enemy: SKSpriteNode {
     
     private var moveSpeed = CGFloat(8)
     private var alive = true
+    private var pointValue = 20
 
     init() {
         let texture = SKTexture(imageNamed: "robot_3Dblue")
@@ -73,6 +74,10 @@ class Enemy: SKSpriteNode {
     
     func isAlive() -> Bool {
         return alive
+    }
+    
+    func getPointValue() -> Int {
+        return pointValue
     }
 
 }

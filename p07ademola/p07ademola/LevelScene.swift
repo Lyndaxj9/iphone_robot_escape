@@ -263,19 +263,14 @@ class LevelScene: SKScene, SKPhysicsContactDelegate {
                 var currentEnode:Enemy! = nil
                 if(contact.bodyA.node?.name == "enemy") {
                     currentEnode = contact.bodyA.node as! Enemy
-                    
-                    //score.incrementScore(inc: 20)
                 } else if(contact.bodyB.node?.name == "enemy") {
                     currentEnode = contact.bodyB.node as! Enemy
-                    //currentEnode.enemyDeath(scene: self)
-                    //score.incrementScore(inc: 20)
                 }
                
                 if(currentEnode.isAlive()) {
-                    score.incrementScore(inc: 20)
+                    score.incrementScore(inc: currentEnode.getPointValue())
                 }
                 currentEnode?.enemyDeath(scene: self)
-
                 scoreLabel.text = String(format: "Score: %d", score.getCurrentScore())
                 
                 break
