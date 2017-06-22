@@ -18,7 +18,7 @@ struct PhysicsCategory {
     static let PathEdge    : UInt32 = 0b100 //4
     static let PointObject : UInt32 = 0b101 //5
     static let Bullet      : UInt32 = 0b110 //6
-    static let EndPath     : UInt32 = 0b111 //7
+    static let EndPath     : UInt32 = 0b1000 //8
 }
 
 //put value here to make it global
@@ -40,9 +40,6 @@ class LevelScene: SKScene, SKPhysicsContactDelegate {
     //will be making an array of enmies
     let enemy:Enemy = Enemy()
     
-    //
-    
-    
     //determine whether to shoot or to move
     var toShoot = false
     
@@ -52,7 +49,8 @@ class LevelScene: SKScene, SKPhysicsContactDelegate {
     var toMove = true
     var playerLoc:CGPoint!
     
-    var score = 0
+    //var score = 0
+    let score:Score = Score(startScore: 0)
     
     override func didMove(to view: SKView) {
         physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
@@ -67,7 +65,7 @@ class LevelScene: SKScene, SKPhysicsContactDelegate {
     
     func setupPlayer() {
         player.physicsBody?.categoryBitMask = PhysicsCategory.PlayerRobot
-        player.physicsBody?.contactTestBitMask = PhysicsCategory.EnemyRobot | PhysicsCategory.PathEdge | PhysicsCategory.PointObject
+        player.physicsBody?.contactTestBitMask = PhysicsCategory.EnemyRobot | PhysicsCategory.PathEdge | PhysicsCategory.EndPath
         player.physicsBody?.usesPreciseCollisionDetection = true
         playerLoc = player.position
         addChild(player)
@@ -211,7 +209,8 @@ class LevelScene: SKScene, SKPhysicsContactDelegate {
         setupEnemy()
         setupObjects()
         gameOver = false
-        score = 0
+        //score = 0
+        score.resetScore()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -261,14 +260,23 @@ class LevelScene: SKScene, SKPhysicsContactDelegate {
                 break
             case PhysicsCategory.EnemyRobot | PhysicsCategory.Bullet:
                 print("bullet . enemy contact")
+                var currentEnode:Enemy! = nil
                 if(contact.bodyA.node?.name == "enemy") {
-                    let currentEnode:Enemy = contact.bodyA.node as! Enemy
-                    currentEnode.enemyDeath(scene: self)
-                    //enemy.enemyDeath(scene: self)
+                    currentEnode = contact.bodyA.node as! Enemy
+                    
+                    //score.incrementScore(inc: 20)
                 } else if(contact.bodyB.node?.name == "enemy") {
-                    let currentEnode:Enemy = contact.bodyB.node as! Enemy
-                    currentEnode.enemyDeath(scene: self)
+                    currentEnode = contact.bodyB.node as! Enemy
+                    //currentEnode.enemyDeath(scene: self)
+                    //score.incrementScore(inc: 20)
                 }
+               
+                if(currentEnode.isAlive()) {
+                    score.incrementScore(inc: 20)
+                }
+                currentEnode?.enemyDeath(scene: self)
+
+                scoreLabel.text = String(format: "Score: %d", score.getCurrentScore())
                 
                 break
             case PhysicsCategory.PlayerRobot | PhysicsCategory.EndPath:
@@ -297,9 +305,8 @@ class LevelScene: SKScene, SKPhysicsContactDelegate {
         
         if let _ = objectTile?.userData?.value(forKey: "barrelG") {
             objectTileMap.setTileGroup(nil, forColumn: column, row: row)
-            score += 10
-            print("score is: %d", score)
-            scoreLabel.text = String(format: "Score: %d", score)
+            score.incrementScore(inc: 10)
+            scoreLabel.text = String(format: "Score: %d", score.getCurrentScore())
         }
     }
 }

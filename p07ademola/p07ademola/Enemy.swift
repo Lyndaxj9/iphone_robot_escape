@@ -36,6 +36,7 @@ class Enemy: SKSpriteNode {
     }
     
     func enemyDeath(scene: SKScene) {
+        print("enemyDeath")
         alive = false
         let fadeOut = SKAction.fadeOut(withDuration: 0.5)
         let removeNode = SKAction.removeFromParent()
@@ -68,6 +69,10 @@ class Enemy: SKSpriteNode {
             }
             //maybe another if statement for when they are super close like width of enemy sprite?
         }
+    }
+    
+    func isAlive() -> Bool {
+        return alive
     }
 
 }
