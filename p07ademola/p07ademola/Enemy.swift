@@ -12,7 +12,9 @@ import SpriteKit
 class Enemy: SKSpriteNode {
     
     private var moveSpeed = CGFloat(8)
+    private var idleSpeed = CGFloat(100)
     private var alive = true
+    private var idling = false
     private var pointValue = 20
 
     init() {
@@ -58,18 +60,29 @@ class Enemy: SKSpriteNode {
             let angle = atan2(v.dy, v.dx)
             self.zRotation = angle
             
-            if( distanceTotal <= self.size.width) {
-                //print("too close")
-                
-            } else if( distanceTotal <= agroRange ) {
+            if( distanceTotal <= agroRange ) {
+                idling = false
+                self.removeAction(forKey: "idling")
                 self.position.x += moveSpeed * cos(angle)
                 self.position.y += moveSpeed * sin(angle)
                 
             } else if( distanceTotal > agroRange ) {
-                //print("idle movement")
+                if(!idling){
+                    print("idle movement")
+                    idleMove()
+                    idling = true
+                }
+
             }
             //maybe another if statement for when they are super close like width of enemy sprite?
         }
+    }
+    
+    func idleMove() {
+        let move = SKAction.moveBy(x: -idleSpeed, y: idleSpeed*0.3, duration: 1.5)
+        let wait = SKAction.wait(forDuration: 0.3)
+        let idleWalkSeq = SKAction.sequence([move, wait, move.reversed()])
+        self.run(SKAction.repeatForever(idleWalkSeq), withKey: "idling")
     }
     
     func isAlive() -> Bool {

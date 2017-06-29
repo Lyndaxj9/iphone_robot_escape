@@ -15,10 +15,10 @@ struct PhysicsCategory {
     static let All      : UInt32 = UInt32.max
     static let PlayerRobot : UInt32 = 0b1 //1
     static let EnemyRobot  : UInt32 = 0b10 //2
-    static let PathEdge    : UInt32 = 0b100 //4
     static let PointObject : UInt32 = 0b101 //5
     static let Bullet      : UInt32 = 0b110 //6
     static let EndPath     : UInt32 = 0b1000 //8
+    static let PathEdge    : UInt32 = 0b1011 //11
 }
 
 //put value here to make it global
@@ -74,7 +74,7 @@ class LevelScene: SKScene, SKPhysicsContactDelegate {
     func setupEnemy() {
         enemy.physicsBody?.categoryBitMask = PhysicsCategory.EnemyRobot
         enemy.physicsBody?.contactTestBitMask = PhysicsCategory.PlayerRobot | PhysicsCategory.Bullet
-        enemy.physicsBody?.collisionBitMask = 0
+        enemy.physicsBody?.collisionBitMask = PhysicsCategory.PathEdge
         enemy.physicsBody?.usesPreciseCollisionDetection = true
         addChild(enemy)
     }
