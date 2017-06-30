@@ -50,7 +50,7 @@ class Enemy: SKSpriteNode {
     func followPlayer(scene: SKScene, playerPos: CGPoint) {
         
         if(alive){
-            let agroRange = CGFloat(250.0)
+            let agroRange = CGFloat(275.0)
             let distanceX = playerPos.x - self.position.x
             let distanceY = playerPos.y - self.position.y
             
@@ -79,9 +79,9 @@ class Enemy: SKSpriteNode {
     }
     
     func idleMove() {
-        let move = SKAction.moveBy(x: -idleSpeed, y: idleSpeed*0.3, duration: 1.5)
-        let wait = SKAction.wait(forDuration: 0.3)
-        let idleWalkSeq = SKAction.sequence([move, wait, move.reversed()])
+        let move = SKAction.moveBy(x: -idleSpeed, y: idleSpeed*0.3, duration: 1.8)
+        let wait = SKAction.wait(forDuration: 0.7)
+        let idleWalkSeq = SKAction.sequence([wait, move, wait, move.reversed()])
         self.run(SKAction.repeatForever(idleWalkSeq), withKey: "idling")
     }
     

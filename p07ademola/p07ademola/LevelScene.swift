@@ -224,6 +224,13 @@ class LevelScene: SKScene, SKPhysicsContactDelegate {
                 playerLoc = player.position
                 player.fireBullet(scene: self, location: currentPoint)
                 toShoot = true
+            } else if(aN.name == "gameOverScreen") {
+                let restartButton = aN.childNode(withName: "restartButton")
+                let restartLabel = restartButton?.childNode(withName: "restartLabel")
+                if((restartButton?.contains(currentPoint))! || (restartLabel?.contains(currentPoint))!) {
+                    print("now restart")
+                }
+                
             }
         }
         
@@ -246,17 +253,25 @@ class LevelScene: SKScene, SKPhysicsContactDelegate {
         toShoot = false
     }
     
+    func goScreen() {
+        if(!gameOver) {
+            print("goScreen")
+            let button = gameoverScreen.childNode(withName: "restartButton")
+            let label = button?.childNode(withName: "restartLabel")
+            label?.isUserInteractionEnabled = true
+            gameoverScreen.isHidden = false
+            gameoverScreen.isUserInteractionEnabled = true
+            gameOver = true
+        }
+    }
+    
     func didBegin(_ contact: SKPhysicsContact) {
         let contactMask = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
         
         
         switch(contactMask) {
             case PhysicsCategory.PlayerRobot | PhysicsCategory.EnemyRobot:
-                //print("gameOver")
-                gameOver = true
-                
-                gameoverScreen.isHidden = false
-                gameoverScreen.isUserInteractionEnabled = true
+                goScreen()
                 break
             case PhysicsCategory.EnemyRobot | PhysicsCategory.Bullet:
                 print("bullet . enemy contact")
