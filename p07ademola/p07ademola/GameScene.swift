@@ -12,7 +12,6 @@ import GameplayKit
 class GameScene: SKScene {
     
     private var startButton : SKSpriteNode?
-    var textLabel = SKLabelNode(text: "Robot Escape")
     
     override func didMove(to view: SKView) {
         
@@ -22,9 +21,6 @@ class GameScene: SKScene {
             startButton.alpha = 0.0
             startButton.run(SKAction.fadeIn(withDuration: 4.0))
         }
-        
-        textLabel.fontSize = 50
-        addChild(textLabel)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

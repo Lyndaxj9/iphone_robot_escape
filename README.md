@@ -4,7 +4,7 @@ A game created using Swift and SpriteKit.
 
 ## Objective
 
-Collect barrels to increase your score, avoid the enemy robot, and get to the other side.
+Collect barrels to increase your score, avoid the enemy robot, and get to the other side. If the enemy robot touches your robot it's game over.
 
 ## Controls
 
