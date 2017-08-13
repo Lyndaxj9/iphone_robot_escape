@@ -17,3 +17,7 @@ Collect barrels to increase your score, avoid the enemy robot, and get to the ot
 ![start screen](http://i.imgur.com/wGuxXDi.png "Start Screen")
 ![initial](http://i.imgur.com/7hNoN7u.png "Initial Game")
 ![bullet shot](http://i.imgur.com/xMQ8w9n.png "Bullet Shot")
+
+## Resources
+
+* sprites and tiles from www.kenney.nl
